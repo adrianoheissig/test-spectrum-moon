@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 
 export const getUserInformation = async (req, res) => {
   try {
+    console.log(req.headers.authorization);
     const userId = req.params.id;
     if (!userId) res.sendStatus(404);
     const users = await Users.findAll(

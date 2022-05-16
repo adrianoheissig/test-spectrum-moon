@@ -1,8 +1,23 @@
 import { Sequelize } from "sequelize";
+import mysql from "mysql2/promise"
 
-const db = new Sequelize("SPECTRUMMOONDB", "root", "12345", {
-  host: "localhost",
-  dialect: "mysql",
-});
+const host = "localhost";
+const port = 3306;
+const user = "root";
+const password = "12345";
+const database = "SPECTRUMMOONDB";
+const dialect = "mysql";
 
-export default db;
+
+(async () => {
+  // create db if it doesn't already exist
+  const connection = await mysql.createConnection({ host, port, user, password });
+  await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
+})();
+    
+  const db = new Sequelize(database, user, password, {
+    host,
+    dialect,
+  });
+
+  export default db;

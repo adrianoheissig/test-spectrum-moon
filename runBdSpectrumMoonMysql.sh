@@ -1,0 +1,2 @@
+docker rm -f bd-spectrum-moon > nul 2>&1
+docker run --name bd-spectrum-moon -v /Users/adrianoheissig/Developer/test-spectrum-moon/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=12345 -p 3306:3306 -d mysql:5.7
