@@ -1,11 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Principal from './pages/Principal.js';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import "bulma/css/bulma.css";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
 root.render(
-  <React.StrictMode>
-    <Principal />
-  </React.StrictMode>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );
