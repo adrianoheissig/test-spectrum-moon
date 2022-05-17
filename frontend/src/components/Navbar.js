@@ -10,19 +10,22 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let user = AuthService.getCurrentUser();
+    setInterval(() => {
+      let user = AuthService.getCurrentUser();
 
-    const LoginLogout = !user ? (
+      const LoginLogout = !user ? (
       <Nav.Link eventKey="1">Login</Nav.Link>
     ) : (
       <Nav.Link eventKey="2">Logout</Nav.Link>
     );
 
     setComponentLoginLogout(LoginLogout);
-  }, []);
+      
+    }, 5000);
+  });
+
 
   const handleLogout = (event) => {
-    console.log(event);
     if (event === "1") {
       navigate("/login");
     } else {

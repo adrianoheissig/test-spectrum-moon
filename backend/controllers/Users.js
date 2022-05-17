@@ -41,7 +41,6 @@ export const Login = async (req, res) => {
   try {
     const user = await Users.findAll({ where: { email: req.body.email } });
     const match = await bcrypt.compare(req.body.password, user[0].password);
-
     if (!match) {
       throw new Error();
     }
@@ -53,16 +52,15 @@ export const Login = async (req, res) => {
       name: user[0].name,
       email: user[0].email,
     };
-
     const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "1d",
     });
-
+    
+    console.log(payload)
     await Users.update(
       { access_token: accessToken },
       { where: { id: userId } }
     );
-
     res.json({ accessToken });
   } catch (error) {
     res.status(404).json({ msg: "Email/Password not found!" });

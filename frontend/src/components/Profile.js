@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
-import Container from "react-bootstrap/Container";
 
 const Profile = () => {
   const navigate = useNavigate();
