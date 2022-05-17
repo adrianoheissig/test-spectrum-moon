@@ -44,7 +44,7 @@ const Profile = () => {
     );
   }
 
-  return <Container fluid>{template}</Container>;
+  return template;
 };
 
 export default Profile;
