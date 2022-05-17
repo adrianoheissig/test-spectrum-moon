@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AuthService from "../services/auth.service";
+import UserService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
@@ -7,19 +8,23 @@ const Profile = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
 
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
-
-    console.log(user);
+    let user = AuthService.getCurrentUser();
     if (!user) {
       navigate("/login");
-    } else {
-      setCurrentUser(user);
     }
+
+    UserService.getUserInformation(user.userId).then(
+      (res) => {
+        setCurrentUser(res[0]);
+      },
+      (err) => console.log(err)
+    );
   }, [navigate]);
 
   let template = <div></div>;
 
   if (currentUser) {
+    console.log(currentUser);
     template = (
       <div className="container">
         <header className="jumbotron">

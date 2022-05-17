@@ -1,9 +1,13 @@
-import axios from "axios";
+import api from "./api.service";
 
-const API_URL = "http://localhost:5000/";
-
-const getUserInformation = () => {
-  return axios.get(API_URL + "user").then(res => {
-      console.log(res)
-  })
+const getUserInformation = (id) => {
+  return api.get(`user/${id}`).then((response) => {
+    return response.data;
+  });
 };
+
+const UserSerice = {
+  getUserInformation,
+};
+
+export default UserSerice;

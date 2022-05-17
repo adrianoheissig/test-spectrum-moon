@@ -4,16 +4,16 @@ import jwt from "jsonwebtoken";
 
 export const getUserInformation = async (req, res) => {
   try {
-    console.log(req.headers.authorization);
     const userId = req.params.id;
-    if (!userId) res.sendStatus(404);
+    if (!userId) res.status(400).json({ msg: "Id not found!" });
+
     const users = await Users.findAll(
       { attributes: ["id", "name", "email"] },
       { where: { id: userId } }
     );
     res.json(users);
   } catch (error) {
-    console.log(error);
+    res.status(400).json({ msg: error });
   }
 };
 
@@ -53,8 +53,6 @@ export const Login = async (req, res) => {
       name: user[0].name,
       email: user[0].email,
     };
-
-    console.log(payload);
 
     const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
       expiresIn: "1d",
