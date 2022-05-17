@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AuthService from "../services/auth.service";
 import UserService from "../services/user.service";
 import { useNavigate } from "react-router-dom";
+import Container from "react-bootstrap/Container";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const Profile = () => {
     let user = AuthService.getCurrentUser();
     if (!user) {
       navigate("/login");
+      return;
     }
 
     UserService.getUserInformation(user.userId).then(
@@ -29,7 +31,7 @@ const Profile = () => {
       <div className="container">
         <header className="jumbotron">
           <h3>
-            <strong>{currentUser.name}</strong> Profile
+            <strong>{currentUser.name}</strong>
           </h3>
         </header>
         <p>
@@ -42,7 +44,7 @@ const Profile = () => {
     );
   }
 
-  return template;
+  return <Container fluid>{template}</Container>;
 };
 
 export default Profile;

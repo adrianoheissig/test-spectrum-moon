@@ -20,18 +20,24 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <Fragment>
-        <Navbar />
-        <Routes>
-          <Route exact path="/" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </Fragment>
-    </Router>
+    <div className="App">
+      <Router>
+        <Fragment>
+          <header>
+            <Navbar />
+          </header>
+          <main>
+            <Routes>
+              <Route exact path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </main>
+        </Fragment>
+      </Router>
+    </div>
   );
 };
 
